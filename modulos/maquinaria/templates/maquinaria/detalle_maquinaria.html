@@ -1,0 +1,73 @@
+{% extends 'barlateral_mod_plantilla.html' %}
+{% load static %}
+
+{% block title %}
+    <title> Maquinaria </title>
+{% endblock %}
+
+{% block contenido %}
+    {% block search %}
+        <form action="{% url 'maquinaria:detalle_maquinaria' %}" method="GET">
+            <div class="input-group mb-3">
+                <input type="text" name="query" value="{{ query }}" class="form-control"
+                       placeholder="Buscar maquinaria por descripción..." id="idInputSearch"
+                       aria-describedby="basic-addon2"/>
+                <button type="submit" class="btn btn-primary mr-1" id="idSearchSp">Buscar</button>
+            </div>
+        </form>
+    {% endblock %}
+
+    <table class="container table table-responsive">
+        <thead>
+        <tr>
+            <th> Descripcion</th>
+            <th> Cantidad</th>
+            <th> Precio unitario</th>
+            <th> Fecha de la compra</th>
+            <th> Disponibilidad</th>
+            <th> Acciones</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for objects, estado in estado_guardado %}
+            <tr>
+                <td> {{ objects.Descripcion }}   </td>
+                <td> {{ objects.Cantidad }}   </td>
+                <td> {{ objects.precio_maquinaria }}   </td>
+                <td> {{ objects.fecha_compra_maquinaria }}   </td>
+                <td>
+
+                    {% if estado == "Bajo Mantenimiento" %}
+                        <p> Bajo Mantenimiento </p>
+                    {% else %}
+                        <p> Disponible </p>
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="btn-accion">
+                        <div>
+                            <a class="text-decoration-none" href="{% url 'maquinaria:editar_maquinaria' objects.id %}">
+                                <i class="ri-edit-2-line text-dark"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a class="text-decoration-none"
+                               href="{% url 'maquinaria:eliminar_maquinaria' objects.id %}">
+                                <i class="ri-eraser-line text-dark"></i>
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+    <div class="mt-0">
+        <a href="{% url 'maquinaria:crear_maquinaria' %}" class="btn btn-success btn-lg mt-md-5 me-md-auto ms-md-3">
+            Añadir Maquinaria
+        </a>
+    </div>
+
+{% endblock %}

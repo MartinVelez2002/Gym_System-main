@@ -1,0 +1,31 @@
+.tooltip-infor{
+    background: rgba(59, 1, 1, 0.94);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    position: absolute;
+    right: 2px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+}
+.contenido:hover .tooltip-infor{
+    visibility: visible;
+    transform: translate(175px,-50px);
+    opacity: 1;
+}
+.tooltip-infor-icon{
+    background: rgb(112, 94, 94);
+    color: #000000;
+    padding: 10px 15px;
+    border-radius: 10px;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+.cab-tool:hover .tooltip-infor-icon{
+    visibility: visible;
+    transform: translate(10px,-50px);
+    opacity: 1;
+}

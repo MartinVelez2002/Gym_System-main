@@ -1,0 +1,74 @@
+{% extends 'barlateral_mod_plantilla.html' %}
+{% load static %}
+{% block title %}
+    <title> Instrumentos </title>
+{% endblock %}
+
+{% block contenido %}
+    {% block search %}
+        <form action="{% url 'instrumentos:detalle_instrumento' %}" method="GET">
+            <div class="input-group mb-3">
+                <input type="text" name="query" value="{{ query }}" class="form-control"
+                       placeholder="Buscar instrumento por descripción" id="idInputSearch"
+                       aria-describedby="basic-addon2"/>
+                <button type="submit" class="btn btn-primary mr-1" id="idSearchSp">Buscar</button>
+            </div>
+        </form>
+    {% endblock %}
+
+
+    <table class="container table table-responsive">
+        <thead>
+        <tr>
+            <th> Descripción</th>
+            <th> Peso</th>
+            <th> Unidades</th>
+            <th> Precio unitario</th>
+            <th> Fecha de la compra</th>
+            <th> Cantidad</th>
+            <th> Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for objects in instrumentos %}
+            <tr>
+
+                <td> {{ objects.descripcion }}   </td>
+                <td> {{ objects.peso }}   </td>
+                <td> {{ objects.unidades }}   </td>
+                <td> {{ objects.precio_instrumento }}   </td>
+                <td> {{ objects.fecha_compra_instrumento }}   </td>
+                <td> {{ objects.cantidad }}   </td>
+
+                <td>
+                    <div class="btn-accion">
+                        <div>
+                            <a class="text-decoration-none "
+                               href="{% url 'instrumentos:editar_instrumento' objects.id %}">
+                                <i class="ri-edit-2-line text-dark"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a class="text-decoration-none"
+                               href="{% url 'instrumentos:eliminar_instrumento' objects.id %}">
+                                <i class="ri-eraser-line text-dark"></i>
+                            </a>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+    <div class="btn-add">
+        <a href="{% url 'instrumentos:crear_instrumento' %}"
+           class="btn btn-success btn-lg mt-md-5 me-md-auto ms-md-3">
+            Añadir Instrumento
+        </a>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'formulario_plantilla.html' %}
+{% load static %}
+{% block title %}
+    <title> Registro de Clientes </title>
+{% endblock %}
+
+
+{% block formulario %}
+    {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error al Grabar</strong> {{ form.errors }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+
+    {{ form.as_p }}
+
+{% endblock %}
+{% block js %}
+    <script src= {% static "js/validaciones.js" %}></script>
+{% endblock %}

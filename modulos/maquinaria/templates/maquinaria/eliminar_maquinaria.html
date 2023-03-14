@@ -1,0 +1,13 @@
+{% extends 'formulario_plantilla.html' %}
+{% load static %}
+
+{% block title %}
+    <title> Eliminación de Maquinaria </title>
+{% endblock %}
+
+{% block formulario %}
+    {% csrf_token %}
+    <h3 style='text-align: center'>¿Estás seguro de eliminar la máquina llamada: "{{ object }}"?</h3>
+{% endblock %}
+
+

@@ -1,0 +1,67 @@
+{% extends 'barlateral_mod_plantilla.html' %}
+{% load static %}
+{% block title %}
+    <title> Finanzas </title>
+{% endblock %}
+
+{% block contenido %}
+    {% block search %}
+        <form action="{% url 'finanzas:detalle_finanzas' %}" method="GET">
+            <div class="input-group mb-3">
+                <input type="text" name="query" value="{{ query }}" class="form-control"
+                       placeholder="Buscar registros por mes/año" id="idInputSearch" aria-describedby="basic-addon2"/>
+                <button type="submit" class="btn btn-primary mr-1" id="idSearchSp">Buscar</button>
+            </div>
+        </form>
+    {% endblock %}
+
+    <table class="container table table-responsive">
+        <thead>
+        <tr>
+            <th> Año</th>
+            <th> Mes</th>
+            <th> Mensualidades</th>
+            <th> Ingresos</th>
+            <th> Gastos</th>
+            <th> Ganancias</th>
+            <th> Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for objects in Finanzs %}
+            <tr>
+                <td> {{ objects.anio }}   </td>
+                <td> {{ objects.mes }}   </td>
+                <td> {{ objects.mensualidades }}   </td>
+                <td> {{ objects.ingresos }}   </td>
+                <td> {{ objects.gastos }}   </td>
+                <td> {{ objects.ganancias }}   </td>
+                <td>
+                    <div class="btn-accion">
+                        <div>
+                            <a class="text-decoration-none" href="{% url 'finanzas:editar_finanzas' objects.id %}">
+                                <i class="ri-refresh-line text-dark"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a class="text-decoration-none" href="{% url 'finanzas:eliminar_finanzas' objects.id %}">
+                                <i class="ri-eraser-line text-dark"></i>
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <div class="btn-add">
+        <a href="{% url 'finanzas:crear_finanzas' %}" class="btn btn-success btn-lg mt-md-5 me-md-auto ms-md-3">
+            Añadir Registro de Finanzas
+        </a>
+    </div>
+
+
+{% endblock %}
+

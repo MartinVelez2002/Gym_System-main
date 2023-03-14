@@ -1,0 +1,75 @@
+{% extends 'barlateral_mod_plantilla.html' %}
+{% load static %}
+
+{% block title %}
+    <title> Mensualidad </title>
+{% endblock %}
+
+{% block contenido %}
+
+    {% block search %}
+        <form action="{% url 'mensualidad:detalle_mensualidad' %}" method="GET">
+            <div class="input-group mb-3">
+                <input type="text" name="query" value="{{ query }}" class="form-control"
+                       placeholder="Buscar cliente por nombre" id="idInputSearch"
+                       aria-describedby="basic-addon2"/>
+                <button type="submit" class="btn btn-primary mr-1" id="idSearchSp">
+                    Buscar
+                </button>
+            </div>
+        </form>
+    {% endblock %}
+
+    <table class="container table table-responsive">
+        <thead>
+        <tr>
+            <th> Cliente</th>
+            <th> Precio</th>
+            <th> fecha_inicio</th>
+            <th> fecha_finalizacion</th>
+            <th> Estado</th>
+            <th> Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for objects in mensualidad %}
+            <tr>
+
+                <td>{{ objects.cliente }}</td>
+                <td>{{ objects.precio }}</td>
+                <td>{{ objects.fecha_inicio }}</td>
+                <td>{{ objects.fecha_finalizacion }}</td>
+                <td>
+                    {% if  objects.precio == 25 %}
+                        Pagado
+                    {% elif objects.precio <= 24 %}
+                        Pendiente
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="btn-accion">
+                        <div>
+                            <a class="text-decoration-none"
+                               href="{% url 'mensualidad:editar_mensualidad' objects.id %}">
+                                <i class="ri-edit-2-line text-dark"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a class="text-decoration-none"
+                               href="{% url 'mensualidad:eliminar_mensualidad' objects.id %}">
+                                <i class="ri-eraser-line text-dark"></i>
+                            </a>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="btn-add">
+        <a href="{% url 'mensualidad:crear_mensualidad' %}" class="btn btn-success btn-lg mt-md-5 me-md-auto ms-md-3">
+            Asignar Mensualidad
+        </a>
+    </div>
+{% endblock %}

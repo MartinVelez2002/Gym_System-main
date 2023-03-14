@@ -1,0 +1,52 @@
+{% extends 'formulario_plantilla.html' %}
+{% load static %}
+
+
+{% block formulario %}
+    {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error al Grabar</strong> {{ form.errors }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+
+    <div>
+        <h5>Seleccione el cliente ingresado</h5>
+        {{ form.cliente }}
+    </div>
+    <br>
+    <div>
+        <h5>Pago</h5>
+        {{ form.precio }}
+    </div>
+    <br>
+    <div>
+        <h5>Fecha de inicio</h5>
+        {{ form.fecha_inicio }}
+    </div>
+    <br>
+    <div>
+        <h5>Fecha de finalizacion</h5>
+        {{ form.fecha_finalizacion }}
+    </div>
+    <br>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/peticiones.js' %}"></script>
+
+    <script>
+        window.addEventListener('load', siguienteMes);
+
+        document.getElementById('fecha').addEventListener('change', siguienteMes);
+
+        function siguienteMes() {
+            let fechaInicio = new Date(document.getElementById("fecha").value);
+            fechaInicio.setDate(fechaInicio.getDate() + 1);
+            fechaInicio.setMonth(fechaInicio.getMonth() + 1);
+            document.getElementById("fecha_final").value = fechaInicio.toLocaleDateString();
+        }
+    </script>
+{% endblock %}

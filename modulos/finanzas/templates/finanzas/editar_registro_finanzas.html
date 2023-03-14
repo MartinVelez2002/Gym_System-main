@@ -1,0 +1,70 @@
+{% extends 'formulario_plantilla.html' %}
+{% load static %}
+{% block title %}
+    <title> Edición de Finanzas </title>
+{% endblock %}
+
+{% block formulario %}
+    {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error al Grabar</strong> {{ form.errors }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+
+    <input type="hidden" name="action" value="{{ action }}">
+
+    <div class="form-group">
+        <label class="h6">Fecha</label>
+        <input type="month" class="form-control" id="fecha_año_mes">
+    </div>
+
+    <table class="table table-bordered" id="data">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Fecha de Inicio</th>
+        </tr>
+        </thead>
+        <tbody id="detalle">
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <label class="h6">Mensualidades</label>
+        {{ form.mensualidades }}
+    </div>
+    <div class="form-group">
+        <label class="h6">Ingresos </label>
+        {{ form.ingresos }}
+    </div>
+    <div class="form-group">
+        <label class="h6">Gastos</label>
+        {{ form.gastos }}
+    </div>
+    <div class="form-group">
+        <label class="h6">Ganancias</label>
+        {{ form.ganancias }}
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src= {% static "js/peticiones.js" %}></script>
+    <script type="text/javascript">
+
+        var mensualidad =
+        {{  mensualidades|safe }}
+        var maquinaria =
+        {{  maquinaria|safe }}
+        var instrumento =
+        {{  instrumento|safe }}
+        var editar_finanzas =
+        {{ detalle_finanzas|safe }}
+
+        var save = '{{ action_save }}'
+
+    </script>
+{% endblock %}
