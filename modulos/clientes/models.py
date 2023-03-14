@@ -9,8 +9,8 @@ MES = opciones.mes()
 
 
 class Cliente(models.Model):
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
+    nombre = models.CharField(unique=True, max_length=100)
+    apellido = models.CharField(unique=True, max_length=100)
     genero = models.CharField(max_length=1, choices=GENERO,default=GENERO[0][1], blank=True, null=True)
     cedula = models.CharField(unique=True, max_length=10 ,validators=[RegexValidator(regex='^.{10}$', message='Introduzca una cédula válida')], default='')
     edad = models.IntegerField(default='')

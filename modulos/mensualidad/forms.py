@@ -10,7 +10,7 @@ class CabeceraMensual(ModelForm):
         fields = '__all__'
         widgets = {
             'cliente': forms.Select(attrs={'class': 'form-control '}),
-            'precio': forms.NumberInput(attrs={'class': 'form-control'}),
+            'precio': forms.NumberInput(attrs={'class': 'form-control', 'disabled': 'True'}),
             'fecha_inicio': forms.DateInput(format=('%Y-%m-%d'),attrs={'class': 'form-control', 'type': 'date', 'id':'fecha'}),
             'fecha_finalizacion': forms.DateInput(
                          format=('%Y-%m-%d'),
