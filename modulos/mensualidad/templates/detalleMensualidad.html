@@ -9,7 +9,7 @@
 
     {% block search %}
         <form action="{% url 'mensualidad:detalle_mensualidad' %}" method="GET">
-            <div class="input-group mb-3">
+            <div class="input-group container mb-3">
                 <input type="text" name="query" value="{{ query }}" class="form-control"
                        placeholder="Buscar cliente por nombre" id="idInputSearch"
                        aria-describedby="basic-addon2"/>

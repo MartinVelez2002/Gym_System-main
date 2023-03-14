@@ -7,7 +7,7 @@
 {% block contenido %}
     {% block search %}
         <form action="{% url 'finanzas:detalle_finanzas' %}" method="GET">
-            <div class="input-group mb-3">
+            <div class="input-group container mb-3">
                 <input type="text" name="query" value="{{ query }}" class="form-control"
                        placeholder="Buscar registros por mes/año" id="idInputSearch" aria-describedby="basic-addon2"/>
                 <button type="submit" class="btn btn-primary mr-1" id="idSearchSp">Buscar</button>
