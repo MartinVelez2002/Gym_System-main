@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import login, logout
+from django.contrib.auth.forms import PasswordResetForm
 from django.http import HttpResponseRedirect, request
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy

@@ -1,6 +1,7 @@
 import json
 
 from django.db import transaction
+from django.db.models import Q
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic import *
@@ -21,8 +22,16 @@ class DetalleFinanzas(LoginRequiredMixin, ListView):
         query = self.request.GET.get("query")
         print(query)
         if query:
-            return self.model.objects.filter(anio__icontains=query) \
-                or self.model.objects.filter(mes__icontains=query)
+            parts = query.split()
+            if len(parts) > 1:
+                anio = parts[0]
+                mes = ' '.join(parts[1:])
+                return self.model.objects.filter(
+                    anio__icontains=anio, mes__icontains=mes
+                )
+            else:
+                return self.model.objects.filter(
+                    Q(anio__icontains=query) | Q(mes__icontains=query))
         else:
             return self.model.objects.all()
 
@@ -49,7 +58,7 @@ class RellenarFinanza(LoginRequiredMixin, CreateView):
         context['maquinaria'] = json.dumps(self.Maquinaria_dict())
         context['instrumento'] = json.dumps(self.Instrumento_dict())
         context['action'] = "add"
-        # bandera para validar una agregación de registro
+
         return context
 
     def Mensualidad_dict(self):
@@ -196,6 +205,7 @@ class EditarFinanzas(LoginRequiredMixin, UpdateView):
                     registro_finanzas.ingresos = float(data['ingresos'])
                     registro_finanzas.gastos = float(data['gastos'])
                     registro_finanzas.ganancias = float(data['ganancias'])
+                    registro_finanzas.perdidas = float(data['perdidas'])
                     registro_finanzas.save()
                     resp["grabar"] = "ok"
 
@@ -216,6 +226,7 @@ class EditarFinanzas(LoginRequiredMixin, UpdateView):
         items['ingresos'] = str(detalle["ingresos"])
         items['gastos'] = str(detalle["gastos"])
         items['ganancias'] = str(detalle["ganancias"])
+        items['perdidas'] = str(detalle["perdidas"])
         print(items)
         return detalle
 

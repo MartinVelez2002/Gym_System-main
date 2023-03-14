@@ -12,3 +12,4 @@ class Finanzas (models.Model):
     gastos = models.IntegerField(default=None)
     ganancias = models.IntegerField(default=None)
 
+

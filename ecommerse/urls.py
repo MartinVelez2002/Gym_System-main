@@ -18,13 +18,15 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from ecommerse import settings
 
+
 urlpatterns = [
     path('clientes/', include('modulos.clientes.urls')),
     path('mensualidad/', include('modulos.mensualidad.urls')),
     path('maquinaria/', include('modulos.maquinaria.urls')),
     path('instrumentos/', include('modulos.instrumentos.urls')),
     path('finanzas/', include('modulos.finanzas.urls')),
-    path('', include('modulos.login.urls'))
+    path('', include('modulos.login.urls')),
+
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

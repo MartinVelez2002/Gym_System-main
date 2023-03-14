@@ -17,4 +17,5 @@ class FormFinanzas(ModelForm):
             'ingresos': forms.NumberInput(attrs={'class': 'form-control', 'id': 'ingresos', 'disabled': 'True'}),
             'gastos': forms.NumberInput(attrs={'class': 'form-control', 'id': 'gastos', 'disabled': 'True'}),
             'ganancias': forms.NumberInput(attrs={'class': 'form-control', 'id': 'ganancias', 'disabled': 'True'}),
+
         }

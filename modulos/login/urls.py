@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 
-from modulos.login.views import Login,LogoutUsuario,MainView,RegistroView,ForgetPassword,CambiarPassword
+from modulos.login.views import Login,LogoutUsuario,MainView,RegistroView, ForgetPassword, CambiarPassword
 from django.urls import path
 
 

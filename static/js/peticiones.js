@@ -8,6 +8,7 @@ class Finanzas {
             ingresos: 0,
             gastos: 0,
             ganancias: 0,
+            perdida: 0,
 
         }
 
@@ -40,7 +41,6 @@ class Finanzas {
         document.getElementById("ingresos").value = this.finanza.ingresos
         document.getElementById("gastos").value = this.finanza.gastos
         document.getElementById("ganancias").value = this.finanza.ganancias
-
     }
 
     GenerarMensualidades(mensualidades_listado, hol) {
@@ -48,6 +48,7 @@ class Finanzas {
         this.finanza.ingresos = 0
         this.finanza.gastos = 0
         this.finanza.ganancias = 0
+        this.finanza.perdida = 0
         let detail = document.getElementById("detalle")
         detail.innerHTML = ""
         for (let j of mensualidades_listado) {
@@ -74,6 +75,7 @@ class Finanzas {
         let csrf = document.querySelector('[name=csrfmiddlewaretoken]').value
         this.finanza.anio = hol.value.split("-")[0]
         this.finanza.mes = hol.value.split("-")[1]
+
         console.log(this.finanza)
         const grabarFinanza = async (url) => {
 

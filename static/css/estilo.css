@@ -4,7 +4,7 @@
 
 
 body{
-    background: linear-gradient(90deg, #2c2020 0%, rgba(17, 38, 128, 0.93) 100%);
+    background:#223243;
     height: 100vh; /* establece la altura al 100% de la ventana del navegador */
 
 }
