@@ -8,7 +8,7 @@ class Finanzas {
             ingresos: 0,
             gastos: 0,
             ganancias: 0,
-            perdida: 0,
+
 
         }
 
@@ -48,7 +48,7 @@ class Finanzas {
         this.finanza.ingresos = 0
         this.finanza.gastos = 0
         this.finanza.ganancias = 0
-        this.finanza.perdida = 0
+
         let detail = document.getElementById("detalle")
         detail.innerHTML = ""
         for (let j of mensualidades_listado) {
