@@ -40,6 +40,7 @@ toggleBtn1.onclick = function () {
 };
 
 
+
 forma.addEventListener('submit', e => {
     e.preventDefault();
     validateInputs();
@@ -90,10 +91,11 @@ const validateInputs = () => {
     }
 
     const allInputsValid = document.querySelectorAll('.valid').length === 5;
-
     if (allInputsValid) {
         document.querySelector("form").submit();
-
+    }
+    else{
+        setError(allInputsValid,'Las contraseñas no cumplen con los requisitos')
     }
 };
 
@@ -132,7 +134,7 @@ function checkPassword(data) {
         specialChar.classList.remove('valid');
     }
     //Mínimo de caracteres
-    if (length.test(data)) {
+     if (length.test(data)) {
         minLength.classList.add('valid');
     } else {
         minLength.classList.remove('valid');
