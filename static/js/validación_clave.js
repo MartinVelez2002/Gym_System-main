@@ -1,5 +1,7 @@
-let pswrd = document.getElementById('contraseña');
-let pswrd2 = document.getElementById('contra2');
+const forma = document.getElementById('formul');
+const email = document.getElementById('correo');
+const clave = document.getElementById('contraseña');
+const clave2 = document.getElementById('contra2');
 let toggleBtn = document.getElementById('toggleBtn');
 let toggleBtn1 = document.getElementById('toggleBtn1');
 
@@ -17,23 +19,83 @@ document.querySelector('#contraseña').addEventListener('keyup', function () {
 //Mostrar y ocultar clave
 
 toggleBtn.onclick = function () {
-    if (pswrd.type === 'password') {
-        pswrd.setAttribute('type', 'text');
+    if (clave.type === 'password') {
+        clave.setAttribute('type', 'text');
         toggleBtn.classList.add('hide');
     } else {
-        pswrd.setAttribute('type', 'password');
+        clave.setAttribute('type', 'password');
         toggleBtn.classList.remove('hide');
 
     }
 };
 
 toggleBtn1.onclick = function () {
-    if (pswrd2.type === 'password') {
-        pswrd2.setAttribute('type', 'text')
+    if (clave2.type === 'password') {
+        clave2.setAttribute('type', 'text')
         toggleBtn1.classList.add('mostrar');
     } else {
-        pswrd2.setAttribute('type', 'password')
+        clave2.setAttribute('type', 'password')
         toggleBtn1.classList.remove('mostrar');
+    }
+};
+
+
+
+forma.addEventListener('submit', e => {
+    e.preventDefault();
+    validateInputs();
+});
+
+
+const setError = (element, message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error')
+
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success')
+};
+
+const setSuccess = element => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+
+};
+
+const isValidEmail = email => {
+    const re = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(String(email).toLowerCase());
+};
+
+
+const validateInputs = () => {
+    const emailValue = email.value.trim();
+    const passwordValue = clave.value.trim();
+    const password2Value = clave2.value.trim();
+
+
+    if (!isValidEmail(emailValue)) {
+        setError(email, 'Proporcionar un email válido.');
+    } else {
+        setSuccess(email);
+    }
+
+    if (password2Value !== passwordValue) {
+        setError(clave2, 'Las claves no coinciden.');
+    } else {
+        setSuccess(clave2);
+    }
+
+    const allInputsValid = document.querySelectorAll('.valid').length === 5;
+    if (allInputsValid) {
+        document.querySelector("form").submit();
+    }
+    else{
+        setError(allInputsValid,'Las contraseñas no cumplen con los requisitos')
     }
 };
 
@@ -72,7 +134,7 @@ function checkPassword(data) {
         specialChar.classList.remove('valid');
     }
     //Mínimo de caracteres
-    if (length.test(data)) {
+     if (length.test(data)) {
         minLength.classList.add('valid');
     } else {
         minLength.classList.remove('valid');
