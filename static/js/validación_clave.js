@@ -93,19 +93,7 @@ const validateInputs = () => {
     if (allInputsValid) {
         document.querySelector("form").submit();
     } else {
-        Swal.fire({
-            icon: 'error',
-            title: 'La clave debe contener al menos una letra mayúscula, una letra minúscula, un número, un carácter especial y tener una longitud mínima de 10 caracteres.',
-            allowOutsideClick: true,
-            showLoaderOnConfirm: true,
-            preConfirm: () => {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        resolve()
-                    }, 700)
-                })
-            }
-        })
+        setError(clave2, "Digite una contraseña válida")
     }
 };
 
