@@ -40,7 +40,6 @@ toggleBtn1.onclick = function () {
 };
 
 
-
 forma.addEventListener('submit', e => {
     e.preventDefault();
     validateInputs();
@@ -93,9 +92,20 @@ const validateInputs = () => {
     const allInputsValid = document.querySelectorAll('.valid').length === 5;
     if (allInputsValid) {
         document.querySelector("form").submit();
-    } else{
-
-        alert("Escribe bien")
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'La clave debe contener al menos una letra mayúscula, una letra minúscula, un número, un carácter especial y tener una longitud mínima de 10 caracteres.',
+            allowOutsideClick: true,
+            showLoaderOnConfirm: true,
+            preConfirm: () => {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve()
+                    }, 700)
+                })
+            }
+        })
     }
 };
 
@@ -134,7 +144,7 @@ function checkPassword(data) {
         specialChar.classList.remove('valid');
     }
     //Mínimo de caracteres
-     if (length.test(data)) {
+    if (length.test(data)) {
         minLength.classList.add('valid');
     } else {
         minLength.classList.remove('valid');
