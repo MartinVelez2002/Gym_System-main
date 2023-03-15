@@ -95,7 +95,8 @@ const validateInputs = () => {
     } else {
         Swal.fire({
             icon: 'error',
-            title: 'La clave debe contener al menos una letra mayúscula, una letra minúscula, un número, un carácter especial y tener una longitud mínima de 10 caracteres.',
+            title: 'La clave debe contener al menos una letra mayúscula, una letra minúscula, ' +
+                'un número, un carácter especial y tener una longitud mínima de 10 caracteres.',
             allowOutsideClick: true,
             showLoaderOnConfirm: true,
             preConfirm: () => {
