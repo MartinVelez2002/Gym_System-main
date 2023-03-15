@@ -93,6 +93,9 @@ const validateInputs = () => {
     const allInputsValid = document.querySelectorAll('.valid').length === 5;
     if (allInputsValid) {
         document.querySelector("form").submit();
+    } else{
+
+        alert("Escribe bien")
     }
 };
 
