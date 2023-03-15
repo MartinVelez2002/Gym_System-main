@@ -9,7 +9,6 @@ class Finanzas {
             gastos: 0,
             ganancias: 0,
 
-
         }
 
     }

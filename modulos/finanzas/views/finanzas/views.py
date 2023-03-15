@@ -205,7 +205,7 @@ class EditarFinanzas(LoginRequiredMixin, UpdateView):
                     registro_finanzas.ingresos = float(data['ingresos'])
                     registro_finanzas.gastos = float(data['gastos'])
                     registro_finanzas.ganancias = float(data['ganancias'])
-                    registro_finanzas.perdidas = float(data['perdidas'])
+
                     registro_finanzas.save()
                     resp["grabar"] = "ok"
 
@@ -226,7 +226,7 @@ class EditarFinanzas(LoginRequiredMixin, UpdateView):
         items['ingresos'] = str(detalle["ingresos"])
         items['gastos'] = str(detalle["gastos"])
         items['ganancias'] = str(detalle["ganancias"])
-        items['perdidas'] = str(detalle["perdidas"])
+
         print(items)
         return detalle
 
