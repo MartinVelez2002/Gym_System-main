@@ -94,9 +94,6 @@ const validateInputs = () => {
     if (allInputsValid) {
         document.querySelector("form").submit();
     }
-    else{
-        setError(allInputsValid,'Las contraseñas no cumplen con los requisitos')
-    }
 };
 
 
