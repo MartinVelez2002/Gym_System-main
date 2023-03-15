@@ -4,7 +4,6 @@ const clave = document.getElementById('contraseña');
 const clave2 = document.getElementById('contra2');
 let toggleBtn = document.getElementById('toggleBtn');
 let toggleBtn1 = document.getElementById('toggleBtn1');
-const clave1 = document.getElementById("contraseña")
 
 
 let lowerCase = document.getElementById('lower');
@@ -93,9 +92,15 @@ const validateInputs = () => {
 
     const allInputsValid = document.querySelectorAll('.valid').length === 5;
     if (allInputsValid) {
-        document.querySelector("form").submit();
+        if (passwordValue == password2Value) {
+            setSuccess(clave2)
+            document.querySelector("form").submit();
+
+        } else {
+            setError(clave2, 'Las claves no coinciden.')
+        }
     } else {
-        setError(clave1, "Digite una contraseña válida")
+        setError(clave, "Digite una contraseña válida")
     }
 };
 
