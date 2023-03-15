@@ -4,6 +4,8 @@ const clave = document.getElementById('contraseña');
 const clave2 = document.getElementById('contra2');
 let toggleBtn = document.getElementById('toggleBtn');
 let toggleBtn1 = document.getElementById('toggleBtn1');
+const clave1 = document.getElementById("contraseña")
+
 
 let lowerCase = document.getElementById('lower');
 let upperCase = document.getElementById('upper');
@@ -93,7 +95,7 @@ const validateInputs = () => {
     if (allInputsValid) {
         document.querySelector("form").submit();
     } else {
-        setError(clave2, "Digite una contraseña válida")
+        setError(clave1, "Digite una contraseña válida")
     }
 };
 
