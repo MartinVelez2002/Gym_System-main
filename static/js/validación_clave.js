@@ -94,8 +94,6 @@ const validateInputs = () => {
     if (allInputsValid) {
         document.querySelector("form").submit();
 
-    } else {
-        alert=("Escribe bien")
     }
 };
 
